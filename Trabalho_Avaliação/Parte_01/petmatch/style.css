@@ -1,0 +1,233 @@
+/* PetMatch - folha de estilo única */
+:root {
+  --verde: #2f6f5e;
+  --verde-escuro: #1f4d41;
+  --menta: #eaf4ef;
+  --amarelo: #f2b33d;
+  --texto: #263238;
+  --branco: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Nunito", Arial, Helvetica, sans-serif;
+  color: var(--texto);
+  background: var(--branco);
+  line-height: 1.6;
+}
+
+img { max-width: 100%; }
+
+/* Remove o sublinhado de todos os links */
+a, a:hover, a:visited { text-decoration: none; }
+
+.container { width: 90%; max-width: 1100px; margin: 0 auto; }
+
+main { flex: 1; }
+
+/* Cabeçalho e navegação */
+header { background: var(--verde); color: var(--branco); }
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  max-width: none;
+  padding: 1rem 2rem;
+}
+
+header .logo { font-size: 1.6rem; font-weight: 800; color: var(--branco); text-decoration: none; }
+
+header .logo:hover { text-decoration: none; }
+
+nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 1.2rem; }
+
+nav a { color: var(--branco); text-decoration: none; font-weight: 600; }
+
+nav a:hover, nav a.ativo { color: var(--amarelo); }
+
+/* Banner em imagem (página Início) */
+main section.banner-img {
+  padding: 0;
+  background: #e4f7fd url("img/banner-fundo.jpg") center / cover no-repeat;
+}
+
+.banner-img img {
+  display: block;
+  width: 100%;
+  max-width: 760px;   /* limita a altura em cerca de 425px */
+  height: auto;
+  margin: 0 auto;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .15);
+}
+
+/* Banner */
+.banner { background: var(--menta); padding: 4rem 0; text-align: center; }
+
+.banner h1 { font-size: 2.4rem; color: var(--verde-escuro); margin-bottom: 1rem; }
+
+.banner p { max-width: 600px; margin: 0 auto 1.5rem; font-size: 1.1rem; }
+
+.botao {
+  display: inline-block;
+  background: var(--amarelo);
+  color: var(--texto);
+  padding: .8rem 1.6rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.botao:hover { background: #e0a020; }
+
+/* Seções */
+main section { padding: 3rem 0; }
+
+h2 { color: var(--verde-escuro); font-size: 1.8rem; margin-bottom: 1.5rem; }
+
+/* Cartões dos pets (Grid) */
+.grid-pets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.cartao {
+  border: 2px solid var(--menta);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--branco);
+}
+
+.cartao .foto {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--menta);
+}
+
+.cartao .info { padding: 1rem; }
+
+.cartao h3 { color: var(--verde); margin-bottom: .3rem; }
+
+.etiqueta {
+  display: inline-block;
+  background: var(--amarelo);
+  border-radius: 20px;
+  padding: .1rem .7rem;
+  font-size: .85rem;
+  margin-top: .5rem;
+}
+
+/* Tabelas */
+.tabela-box { overflow-x: auto; margin-bottom: 2.5rem; }
+
+table { width: 100%; border-collapse: collapse; min-width: 500px; }
+
+caption { text-align: left; font-weight: 700; margin-bottom: .5rem; }
+
+th, td { padding: .8rem; text-align: left; border-bottom: 1px solid #d5e5dd; }
+
+thead th { background: var(--verde); color: var(--branco); }
+
+tbody tr:nth-child(even) { background: var(--menta); }
+
+/* Sobre nós (Flexbox) */
+.sobre-flex { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; }
+
+.sobre-flex .texto { flex: 2 1 400px; }
+
+.sobre-flex .texto p { margin-bottom: 1rem; }
+
+.sobre-flex .destaque {
+  flex: 1 1 250px;
+  background: var(--menta);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  font-size: 5rem;
+}
+
+.valores { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+
+.valores div {
+  flex: 1 1 220px;
+  border-left: 5px solid var(--amarelo);
+  padding: 1rem;
+  background: var(--menta);
+}
+
+/* Formulário */
+.titulo-centro { text-align: center; }
+
+.formulario {
+  max-width: 650px;
+  margin: 0 auto;
+  background: var(--menta);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.campo { margin-bottom: 1.2rem; }
+
+.campo label { display: block; font-weight: 700; margin-bottom: .3rem; }
+
+.campo input, .campo select, .campo textarea {
+  width: 100%;
+  padding: .7rem;
+  border: 2px solid #c8ddd3;
+  border-radius: 8px;
+  font: inherit;
+  background: var(--branco);
+}
+
+.campo input:focus, .campo select:focus, .campo textarea:focus {
+  outline: none;
+  border-color: var(--verde);
+}
+
+.linha { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.linha .campo { flex: 1 1 200px; }
+
+/* Radio e checkbox alinhados com o texto */
+.grupo-opcoes { border: none; }
+
+.grupo-opcoes legend { font-weight: 700; margin-bottom: .3rem; }
+
+.opcao { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; }
+
+.campo .opcao input { width: auto; margin: 0; accent-color: var(--verde); }
+
+.campo .opcao label { display: inline; font-weight: 400; margin: 0; }
+
+.contador { display: block; text-align: right; color: #5f6f68; }
+
+/* Mensagens de validação */
+.erro { display: block; color: #c0392b; font-size: .9rem; margin-top: .3rem; }
+
+.campo input.invalido { border-color: #c0392b; }
+
+.sucesso { color: var(--verde); font-weight: 700; margin-top: 1rem; }
+
+/* Rodapé */
+footer { background: var(--verde-escuro); color: var(--branco); text-align: center; padding: 1.5rem 0; }
+
+/* Responsividade */
+@media (max-width: 600px) {
+  header .container { flex-direction: column; text-align: center; padding: 1rem; }
+  nav ul { justify-content: center; }
+  .banner h1 { font-size: 1.8rem; }
+  .formulario { padding: 1.2rem; }
+}
