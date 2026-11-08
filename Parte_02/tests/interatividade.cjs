@@ -38,14 +38,39 @@ test('carrossel automático com vários cards, arraste e pausa', async t => {
   const p = await abrir(t, 'index.html');
   const galeria = p.locator('#galeria-fotos');
   assert.equal(await p.locator('.galeria-card').count() >= 6, true, 'cards da galeria disponíveis');
-  await galeria.scrollIntoViewIfNeeded();
+  const foraDaTela = await galeria.evaluate(e=>e.scrollLeft);
+  await p.waitForTimeout(4100);
+  assert.equal(await galeria.evaluate(e=>e.scrollLeft),foraDaTela,'não avança fora da tela');
+  await galeria.evaluate(e => {
+    const r = e.getBoundingClientRect();
+    window.scrollBy(0,r.top-innerHeight+r.height*.4);
+  });
+  await p.waitForTimeout(1100);
+  assert.equal(await galeria.evaluate(e=>e.scrollLeft),foraDaTela,'40% visível ainda não inicia');
+  await galeria.evaluate(e => {
+    const r = e.getBoundingClientRect();
+    window.scrollBy(0,r.top-innerHeight+r.height*.6);
+  });
   const inicio = await galeria.evaluate(e=>e.scrollLeft);
-  await p.waitForTimeout(4200);
+  await p.waitForTimeout(1100);
   assert.ok(await galeria.evaluate(e=>e.scrollLeft) > inicio, 'avança automaticamente');
+  await p.evaluate(() => window.scrollTo(0,0));
+  await p.waitForTimeout(100);
+  const saiu = await galeria.evaluate(e=>e.scrollLeft);
+  await p.waitForTimeout(4100);
+  assert.equal(await galeria.evaluate(e=>e.scrollLeft),saiu,'pausa ao sair da tela');
+  await galeria.scrollIntoViewIfNeeded();
+  await p.waitForTimeout(1100);
+  const retomou = await galeria.evaluate(e=>e.scrollLeft);
+  assert.ok(retomou > saiu,'retoma imediatamente ao voltar');
+  await p.waitForTimeout(1500);
+  assert.equal(await galeria.evaluate(e=>e.scrollLeft),retomou,'não acumula avanços ao retornar');
   const box = await galeria.boundingBox();
   await p.mouse.move(box.x+box.width/2,box.y+100);
   await p.waitForTimeout(1100);
   const antes = await galeria.evaluate(e=>e.scrollLeft);
+  await p.waitForTimeout(3100);
+  assert.equal(await galeria.evaluate(e=>e.scrollLeft),antes,'mouse pausa o autoplay');
   await p.mouse.down();
   await p.mouse.move(box.x+box.width/2-180,box.y+100,{steps:12});
   await p.mouse.up();
@@ -61,6 +86,34 @@ test('carrossel automático com vários cards, arraste e pausa', async t => {
   await p.keyboard.press('ArrowRight');
   await p.waitForTimeout(1100);
   assert.ok(await galeria.evaluate(e=>e.scrollLeft) > pausado);
+});
+
+test('card central acompanha navegação e hover sem alterar a largura', async t => {
+  const p = await abrir(t, 'index.html');
+  await p.emulateMedia({reducedMotion:'reduce'});
+  const g = p.locator('#galeria-fotos');
+  await g.focus();
+  for (const width of [390,768,1024,1440]) {
+    await p.setViewportSize({width,height:900});
+    for (let i=0;i<7;i++) {
+      await p.keyboard.press('ArrowRight');
+      await p.waitForTimeout(50);
+      const central = await g.evaluate(e => {
+        const centro = e.getBoundingClientRect().left + e.clientWidth/2;
+        const cards = [...e.querySelectorAll('.galeria-card')];
+        const distancias = cards.map(c => Math.abs(c.getBoundingClientRect().left+c.offsetWidth/2-centro));
+        const ativos = cards.filter(c=>c.classList.contains('em-destaque'));
+        return ativos.length === 1 && Math.abs(ativos[0].getBoundingClientRect().left+ativos[0].offsetWidth/2-centro) <= Math.min(...distancias)+1;
+      });
+      assert.ok(central,'um único card mais próximo do centro fica destacado');
+    }
+  }
+  const card = g.locator('.em-destaque');
+  const largura = await card.evaluate(e=>e.offsetWidth);
+  await card.hover();
+  assert.equal(await card.evaluate(e=>e.offsetWidth),largura);
+  assert.equal(await card.evaluate(e=>getComputedStyle(e).transform),'matrix(1, 0, 0, 1, 0, -4)');
+  assert.equal(await card.evaluate(e=>getComputedStyle(e).transitionDuration),'0s');
 });
 test('CPF, e-mail e maioridade validados durante digitação e envio bloqueado', async t => {
   const p = await abrir(t, 'cadastro.html');

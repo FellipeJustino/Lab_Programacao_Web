@@ -84,8 +84,26 @@ if (cartoes.length) {
     let focado = false;
     let temporizador;
     let posicao = 0;
+    let visivel = false;
+    let cardDestacado;
+    function atualizarDestaque() {
+      const centro = viewport.scrollLeft + viewport.clientWidth / 2;
+      let proximo;
+      let menorDistancia = Infinity;
+      for (const card of trilho.children) {
+        const distancia = Math.abs(card.offsetLeft + card.offsetWidth / 2 - centro);
+        if (distancia < menorDistancia) {
+          menorDistancia = distancia;
+          proximo = card;
+        }
+      }
+      if (proximo === cardDestacado) return;
+      cardDestacado?.classList.remove('em-destaque');
+      proximo?.classList.add('em-destaque');
+      cardDestacado = proximo;
+    }
     function bloqueado() {
-      return movimentoReduzido.matches || sobre || focado || arrastando ||
+      return !visivel || movimentoReduzido.matches || sobre || focado || arrastando ||
         document.hidden || modal.open;
     }
     function agendar() {
@@ -100,6 +118,7 @@ if (cartoes.length) {
       if (!larguraGrupo) return;
       viewport.scrollLeft = larguraGrupo + ((viewport.scrollLeft - larguraGrupo) % larguraGrupo + larguraGrupo) % larguraGrupo;
       posicao = (viewport.scrollLeft - larguraGrupo) / passo;
+      atualizarDestaque();
     }
     function medir() {
       interromper();
@@ -107,6 +126,7 @@ if (cartoes.length) {
       passo = cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
       larguraGrupo = cards[cartoes.length].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
       viewport.scrollLeft = larguraGrupo + posicao * passo;
+      atualizarDestaque();
       agendar();
     }
     function avancar(direcao) {
@@ -115,7 +135,7 @@ if (cartoes.length) {
       $viewport.animate({scrollLeft: viewport.scrollLeft + direcao * passo}, {
         duration: movimentoReduzido.matches ? 0 : 900,
         easing: 'swing',
-        progress: () => { posicao = (viewport.scrollLeft - larguraGrupo) / passo; },
+        progress: () => { posicao = (viewport.scrollLeft - larguraGrupo) / passo; atualizarDestaque(); },
         complete: () => { normalizar(); agendar(); }
       });
     }
@@ -125,6 +145,14 @@ if (cartoes.length) {
     }
     medir();
     new ResizeObserver(medir).observe(viewport);
+    new IntersectionObserver(([entrada]) => {
+      const agoraVisivel = entrada.isIntersecting && entrada.intersectionRatio >= 0.5;
+      if (agoraVisivel === visivel) return;
+      visivel = agoraVisivel;
+      interromper();
+      if (!bloqueado()) avancar(1);
+    }, {threshold: 0.5}).observe(viewport);
+    viewport.addEventListener('scroll', atualizarDestaque, {passive: true});
     viewport.addEventListener('pointerenter', evento => {
       if (evento.pointerType === 'mouse') { sobre = true; atualizarPausa(); }
     });

@@ -262,10 +262,17 @@ button, select { font-family: inherit; }
 .galeria { width: 100%; min-width: 0; text-align: center; }
 .galeria > h2, .galeria > p { padding-inline: 1rem; }
 .galeria h2 { margin-bottom: .5rem; }
-#galeria-fotos { margin: 1.5rem 0 1rem; overflow: hidden; cursor: grab; touch-action: pan-y; user-select: none; }
+#galeria-fotos { margin: 1.5rem 0 1rem; padding-block: 16px; overflow: hidden; cursor: grab; touch-action: pan-y; user-select: none; }
 #galeria-fotos.arrastando { cursor: grabbing; }
 .galeria-trilho { display: flex; gap: 24px; position: relative; }
-.galeria-card { flex: 0 0 calc((100% - 72px) / 4); min-width: 0; text-align: left; border: 1px solid #d5e5dd; border-radius: 16px; overflow: hidden; background: var(--menta); }
+.galeria-card { flex: 0 0 calc((100% - 72px) / 4); min-width: 0; text-align: left; border: 1px solid #d5e5dd; border-radius: 16px; overflow: hidden; background: var(--menta); transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease; }
+.galeria-card.em-destaque { border-color: var(--verde); box-shadow: 0 3px 8px rgb(0 80 50 / 18%); }
+@media (hover: hover) and (pointer: fine) {
+  .galeria-card:hover { transform: translateY(-4px); border-color: var(--verde); box-shadow: 0 5px 10px rgb(0 80 50 / 28%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .galeria-card { transition: none; }
+}
 .galeria-card img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: var(--branco); pointer-events: none; }
 .galeria-card figcaption { padding: 1.1rem; }
 .galeria-card h3 { color: var(--verde-escuro); font-size: 1.35rem; }
