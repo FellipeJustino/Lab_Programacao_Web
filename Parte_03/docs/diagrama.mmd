@@ -1,0 +1,27 @@
+erDiagram
+    ADOTANTES ||--o{ PRE_CADASTROS : envia
+    PETS o|--o{ PRE_CADASTROS : recebe_interesse
+    ADOTANTES {
+        int id PK
+        varchar nome
+        char cpf UK
+        varchar email
+        varchar telefone "opcional"
+        varchar cidade "opcional"
+        date nascimento
+        timestamp criado_em
+    }
+    PETS {
+        int id PK
+        varchar nome UK
+        enum especie
+    }
+    PRE_CADASTROS {
+        int id PK
+        int adotante_id FK
+        int pet_id FK "opcional"
+        enum moradia
+        varchar mensagem "opcional"
+        boolean termo_aceito
+        timestamp criado_em
+    }

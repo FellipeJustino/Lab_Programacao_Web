@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="490" viewBox="0 0 1160 490">
+<rect width="1160" height="490" fill="#f5f7fa"/><g font-family="sans-serif" fill="#19324d">
+<text x="30" y="40" font-size="25" font-weight="bold">PetMatch — Diagrama de entidade-relacionamento</text>
+<rect x="30" y="90" width="340" height="310" rx="8" fill="white" stroke="#19324d"/><text x="46" y="122" font-size="20" font-weight="bold">ADOTANTES</text><path d="M30 138h340" stroke="#19324d"/>
+<text x="46" y="168" font-size="16">id : INT [PK]</text>
+<text x="46" y="195" font-size="16">nome : VARCHAR(150)</text>
+<text x="46" y="222" font-size="16">cpf : CHAR(11) [UNIQUE]</text>
+<text x="46" y="249" font-size="16">email : VARCHAR(254)</text>
+<text x="46" y="276" font-size="16">telefone : VARCHAR(30), opcional</text>
+<text x="46" y="303" font-size="16">cidade : VARCHAR(100), opcional</text>
+<text x="46" y="330" font-size="16">nascimento : DATE</text>
+<text x="46" y="357" font-size="16">criado_em : TIMESTAMP</text>
+<rect x="410" y="90" width="340" height="310" rx="8" fill="white" stroke="#19324d"/><text x="426" y="122" font-size="20" font-weight="bold">PRE_CADASTROS</text><path d="M410 138h340" stroke="#19324d"/>
+<text x="426" y="168" font-size="16">id : INT [PK]</text>
+<text x="426" y="195" font-size="16">adotante_id : INT [FK]</text>
+<text x="426" y="222" font-size="16">pet_id : INT [FK], opcional</text>
+<text x="426" y="249" font-size="16">moradia : casa | apartamento</text>
+<text x="426" y="276" font-size="16">mensagem : VARCHAR(500), opcional</text>
+<text x="426" y="303" font-size="16">termo_aceito : BOOLEAN</text>
+<text x="426" y="330" font-size="16">criado_em : TIMESTAMP</text>
+<rect x="790" y="90" width="340" height="310" rx="8" fill="white" stroke="#19324d"/><text x="806" y="122" font-size="20" font-weight="bold">PETS</text><path d="M790 138h340" stroke="#19324d"/>
+<text x="806" y="168" font-size="16">id : INT [PK]</text>
+<text x="806" y="195" font-size="16">nome : VARCHAR(50) [UNIQUE]</text>
+<text x="806" y="222" font-size="16">especie : cachorro | gato</text>
+<path d="M370 230h40 M750 230h40" stroke="#19324d" stroke-width="2"/>
+<text x="376" y="218" font-size="12">1:N</text><text x="750" y="218" font-size="12">0..1:N</text>
+<text x="30" y="440" font-size="16">Um adotante pode enviar vários pré-cadastros. Cada pré-cadastro pertence a um adotante.</text>
+<text x="30" y="467" font-size="16">O pet é opcional; cada pet pode receber vários pré-cadastros. PK: chave primária • FK: chave estrangeira.</text></g></svg>
