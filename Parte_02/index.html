@@ -1,126 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Início | PetMatch</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="img/favicon.png">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="pagina-inicio">
-  <header>
-    <div class="container">
-      <a href="index.html" class="logo">🐾 PetMatch</a>
-      <nav>
-        <ul>
-          <li><a href="index.html" class="ativo">Início</a></li>
-          <li><a href="feiras.html">Feiras e Vacinas</a></li>
-          <li><a href="sobre.html">Sobre Nós</a></li>
-          <li><a href="cadastro.html">Quero Adotar</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Início | PetMatch</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" href="favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="img/favicon.png" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body class="pagina-inicio">
+        <header>
+            <div class="container">
+                <a href="index.html" class="logo">🐾 PetMatch</a>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html" class="ativo">Início</a>
+                        </li>
+                        <li>
+                            <a href="feiras.html">Feiras e Vacinas</a>
+                        </li>
+                        <li>
+                            <a href="sobre.html">Sobre Nós</a>
+                        </li>
+                        <li>
+                            <a href="cadastro.html">Quero Adotar</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-  <main>
-    <section class="banner-img">
-      <a href="cadastro.html">
-        <img src="img/banner.jpg" width="3680" height="1152" alt="Adote um amigo, salve uma vida! Cães e gatos vacinados e castrados esperando por um lar. Clique para fazer o pré-cadastro.">
-      </a>
-    </section>
+        <main>
+            <section class="banner-img">
+                <a href="cadastro.html">
+                    <img
+                        src="img/banner.jpg"
+                        width="3680"
+                        height="1152"
+                        alt="Adote um amigo, salve uma vida! Cães e gatos vacinados e castrados esperando por um lar. Clique para fazer o pré-cadastro."
+                    />
+                </a>
+            </section>
 
-    <section>
-      <div class="container">
-        <h2>Pets disponíveis para adoção</h2>
-        <div class="filtros" aria-label="Filtrar pets">
-          <div class="campo"><label for="filtro-especie">Espécie</label>
-            <select id="filtro-especie"><option value="">Todas</option><option value="cao">Cães</option><option value="gato">Gatos</option></select></div>
-          <div class="campo"><label for="filtro-porte">Porte</label>
-            <select id="filtro-porte"><option value="">Todos</option><option value="pequeno">Pequeno</option><option value="medio">Médio</option><option value="grande">Grande</option></select></div>
-          <button class="botao" id="limpar-filtros" type="button">Limpar filtros</button>
-        </div>
-        <p id="resultado-filtro" role="status">6 pets encontrados.</p>
-        <p id="sem-resultados" hidden>Nenhum pet com essa combinação. Experimente outro porte ou espécie.</p>
-        <div class="grid-pets">
-          <article class="cartao" data-especie="cao" data-porte="medio">
-            <img class="foto" src="img/thor.jpg" alt="Foto de Thor">
-            <div class="info">
-              <h3>Thor</h3>
-              <p>Cão, 2 anos, porte médio. Brincalhão e ótimo com crianças.</p>
-              <span class="etiqueta">Vacinado</span>
-            <button type="button" class="conhecer botao" data-pet="Thor" aria-haspopup="dialog">Conhecer Thor</button>
-            </div>
-          </article>
-          <article class="cartao" data-especie="gato" data-porte="pequeno">
-            <img class="foto" src="img/mel.jpg" alt="Foto de Mel">
-            <div class="info">
-              <h3>Mel</h3>
-              <p>Gata, 1 ano, porte pequeno. Calma, carinhosa e adora dormir no sol.</p>
-              <span class="etiqueta">Castrada</span>
-            <button type="button" class="conhecer botao" data-pet="Mel" aria-haspopup="dialog">Conhecer Mel</button>
-            </div>
-          </article>
-          <article class="cartao" data-especie="cao" data-porte="pequeno">
-            <img class="foto" src="img/pacoca.jpg" alt="Foto de Paçoca">
-            <div class="info">
-              <h3>Paçoca</h3>
-              <p>Cão, 5 meses, porte pequeno. Cheio de energia.</p>
-              <span class="etiqueta">Filhote</span>
-            <button type="button" class="conhecer botao" data-pet="Paçoca" aria-haspopup="dialog">Conhecer Paçoca</button>
-            </div>
-          </article>
-          <article class="cartao" data-especie="gato" data-porte="medio">
-            <img class="foto" src="img/frajola.jpg" alt="Foto de Frajola">
-            <div class="info">
-              <h3>Frajola</h3>
-              <p>Gato, 4 anos, porte médio. Independente e muito tranquilo.</p>
-              <span class="etiqueta">Vacinado</span>
-            <button type="button" class="conhecer botao" data-pet="Frajola" aria-haspopup="dialog">Conhecer Frajola</button>
-            </div>
-          </article>
-          <article class="cartao" data-especie="cao" data-porte="grande">
-            <img class="foto" src="img/luna.jpg" alt="Foto de Luna">
-            <div class="info">
-              <h3>Luna</h3>
-              <p>Cadela, 6 anos, porte grande. Dócil e companheira.</p>
-              <span class="etiqueta">Castrada</span>
-            <button type="button" class="conhecer botao" data-pet="Luna" aria-haspopup="dialog">Conhecer Luna</button>
-            </div>
-          </article>
-          <article class="cartao" data-especie="cao" data-porte="pequeno">
-            <img class="foto" src="img/bolinha.jpg" alt="Foto de Bolinha">
-            <div class="info">
-              <h3>Bolinha</h3>
-              <p>Cão, 3 anos, porte pequeno. Adora passear.</p>
-              <span class="etiqueta">Vacinado</span>
-            <button type="button" class="conhecer botao" data-pet="Bolinha" aria-haspopup="dialog">Conhecer Bolinha</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section class="galeria" aria-labelledby="titulo-galeria" aria-roledescription="carrossel">
-      <h2 id="titulo-galeria">Conheça nossos companheiros</h2>
-      <p>Um novo melhor amigo está passando por aqui.</p>
-      <div id="galeria-fotos" tabindex="0" role="region" aria-label="Fotos dos pets"><div class="galeria-trilho"></div></div>
-    </section>
-    <dialog id="modal-pet" aria-labelledby="nome-pet" aria-describedby="historia-pet">
-      <button type="button" class="botao fechar-modal" id="fechar-modal" autofocus>Fechar</button>
-      <img id="foto-pet" src="img/thor.jpg" alt="">
-      <div class="modal-conteudo"><h2 id="nome-pet"></h2>
-        <p id="historia-pet"></p>
-        <a class="botao" id="adotar-pet" href="cadastro.html">Quero adotar</a>
-      </div>
-    </dialog>
-  </main>
+            <section>
+                <div class="container">
+                    <h2>Pets disponíveis para adoção</h2>
+                    <div class="filtros" aria-label="Filtrar pets">
+                        <div class="campo">
+                            <label for="filtro-especie">Espécie</label>
+                            <select id="filtro-especie">
+                                <option value="">Todas</option>
+                                <option value="cao">Cães</option>
+                                <option value="gato">Gatos</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label for="filtro-porte">Porte</label>
+                            <select id="filtro-porte">
+                                <option value="">Todos</option>
+                                <option value="pequeno">Pequeno</option>
+                                <option value="medio">Médio</option>
+                                <option value="grande">Grande</option>
+                            </select>
+                        </div>
+                        <button class="botao" id="limpar-filtros" type="button">
+                            Limpar filtros
+                        </button>
+                    </div>
+                    <p id="resultado-filtro" role="status">6 pets encontrados.</p>
+                    <p id="sem-resultados" hidden>
+                        Nenhum pet com essa combinação. Experimente outro porte ou espécie.
+                    </p>
+                    <div class="grid-pets">
+                        <article class="cartao" data-especie="cao" data-porte="medio">
+                            <img class="foto" src="img/thor.jpg" alt="Foto de Thor" />
+                            <div class="info">
+                                <h3>Thor</h3>
+                                <p>Cão, 2 anos, porte médio. Brincalhão e ótimo com crianças.</p>
+                                <span class="etiqueta">Vacinado</span>
+                                <button
+                                    type="button"
+                                    class="conhecer botao"
+                                    data-pet="Thor"
+                                    aria-haspopup="dialog"
+                                >
+                                    Conhecer Thor
+                                </button>
+                            </div>
+                        </article>
+                        <article class="cartao" data-especie="gato" data-porte="pequeno">
+                            <img class="foto" src="img/mel.jpg" alt="Foto de Mel" />
+                            <div class="info">
+                                <h3>Mel</h3>
+                                <p>
+                                    Gata, 1 ano, porte pequeno. Calma, carinhosa e adora dormir no
+                                    sol.
+                                </p>
+                                <span class="etiqueta">Castrada</span>
+                                <button
+                                    type="button"
+                                    class="conhecer botao"
+                                    data-pet="Mel"
+                                    aria-haspopup="dialog"
+                                >
+                                    Conhecer Mel
+                                </button>
+                            </div>
+                        </article>
+                        <article class="cartao" data-especie="cao" data-porte="pequeno">
+                            <img class="foto" src="img/pacoca.jpg" alt="Foto de Paçoca" />
+                            <div class="info">
+                                <h3>Paçoca</h3>
+                                <p>Cão, 5 meses, porte pequeno. Cheio de energia.</p>
+                                <span class="etiqueta">Filhote</span>
+                                <button
+                                    type="button"
+                                    class="conhecer botao"
+                                    data-pet="Paçoca"
+                                    aria-haspopup="dialog"
+                                >
+                                    Conhecer Paçoca
+                                </button>
+                            </div>
+                        </article>
+                        <article class="cartao" data-especie="gato" data-porte="medio">
+                            <img class="foto" src="img/frajola.jpg" alt="Foto de Frajola" />
+                            <div class="info">
+                                <h3>Frajola</h3>
+                                <p>Gato, 4 anos, porte médio. Independente e muito tranquilo.</p>
+                                <span class="etiqueta">Vacinado</span>
+                                <button
+                                    type="button"
+                                    class="conhecer botao"
+                                    data-pet="Frajola"
+                                    aria-haspopup="dialog"
+                                >
+                                    Conhecer Frajola
+                                </button>
+                            </div>
+                        </article>
+                        <article class="cartao" data-especie="cao" data-porte="grande">
+                            <img class="foto" src="img/luna.jpg" alt="Foto de Luna" />
+                            <div class="info">
+                                <h3>Luna</h3>
+                                <p>Cadela, 6 anos, porte grande. Dócil e companheira.</p>
+                                <span class="etiqueta">Castrada</span>
+                                <button
+                                    type="button"
+                                    class="conhecer botao"
+                                    data-pet="Luna"
+                                    aria-haspopup="dialog"
+                                >
+                                    Conhecer Luna
+                                </button>
+                            </div>
+                        </article>
+                        <article class="cartao" data-especie="cao" data-porte="pequeno">
+                            <img class="foto" src="img/bolinha.jpg" alt="Foto de Bolinha" />
+                            <div class="info">
+                                <h3>Bolinha</h3>
+                                <p>Cão, 3 anos, porte pequeno. Adora passear.</p>
+                                <span class="etiqueta">Vacinado</span>
+                                <button
+                                    type="button"
+                                    class="conhecer botao"
+                                    data-pet="Bolinha"
+                                    aria-haspopup="dialog"
+                                >
+                                    Conhecer Bolinha
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section
+                class="galeria"
+                aria-labelledby="titulo-galeria"
+                aria-roledescription="carrossel"
+            >
+                <h2 id="titulo-galeria">Conheça nossos companheiros</h2>
+                <p>Um novo melhor amigo está passando por aqui.</p>
+                <div id="galeria-fotos" tabindex="0" role="region" aria-label="Fotos dos pets">
+                    <div class="galeria-trilho"></div>
+                </div>
+            </section>
+            <dialog id="modal-pet" aria-labelledby="nome-pet" aria-describedby="historia-pet">
+                <button type="button" class="botao fechar-modal" id="fechar-modal" autofocus>
+                    Fechar
+                </button>
+                <img id="foto-pet" src="img/thor.jpg" alt="" />
+                <div class="modal-conteudo">
+                    <h2 id="nome-pet"></h2>
+                    <p id="historia-pet"></p>
+                    <a class="botao" id="adotar-pet" href="cadastro.html">Quero adotar</a>
+                </div>
+            </dialog>
+        </main>
 
-  <footer>
-    <p>&copy; 2026 PetMatch - ONG de adoção responsável. Projeto acadêmico.</p>
-  </footer>
-  <script src="vendor/jquery-3.7.1.min.js"></script>
-  <script src="script.js"></script>
-</body>
+        <footer>
+            <p>&copy; 2026 PetMatch - ONG de adoção responsável. Projeto acadêmico.</p>
+        </footer>
+        <script src="vendor/jquery-3.7.1.min.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>
