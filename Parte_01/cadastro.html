@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pré-cadastro | PetMatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">🐾 PetMatch</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="feiras.html">Feiras e Vacinas</a></li>
+          <li><a href="sobre.html">Sobre Nós</a></li>
+          <li><a href="cadastro.html" class="ativo">Quero Adotar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <h2 class="titulo-centro">Pré-cadastro de adotante</h2>
+        <form class="formulario" id="form-cadastro" action="#" method="post" novalidate>
+          <div class="campo">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" required>
+            <span class="erro" id="erro-nome"></span>
+          </div>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="nome@gmail.com" required>
+              <span class="erro" id="erro-email"></span>
+            </div>
+            <div class="campo">
+              <label for="telefone">Telefone</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(32) 99999-9999">
+            </div>
+          </div>
+
+          <div class="linha">
+            <div class="campo">
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade" name="cidade">
+            </div>
+            <div class="campo">
+              <label for="nascimento">Data de nascimento</label>
+              <input type="date" id="nascimento" name="nascimento" min="1901-01-01" max="2026-12-31" required>
+              <span class="erro" id="erro-nascimento"></span>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="pet">Pet de interesse</label>
+            <select id="pet" name="pet">
+              <option value="">Selecione</option>
+              <option>Thor</option>
+              <option>Mel</option>
+              <option>Paçoca</option>
+              <option>Frajola</option>
+              <option>Luna</option>
+              <option>Bolinha</option>
+              <option>Ainda não escolhi</option>
+            </select>
+          </div>
+
+          <fieldset class="campo grupo-opcoes">
+            <legend>Tipo de moradia</legend>
+            <div class="opcao">
+              <input type="radio" id="casa" name="moradia" value="casa">
+              <label for="casa">Casa</label>
+            </div>
+            <div class="opcao">
+              <input type="radio" id="apto" name="moradia" value="apartamento">
+              <label for="apto">Apartamento</label>
+            </div>
+            <span class="erro" id="erro-moradia"></span>
+          </fieldset>
+
+          <div class="campo">
+            <label for="mensagem">Por que você quer adotar?</label>
+            <textarea id="mensagem" name="mensagem" rows="4" maxlength="500"></textarea>
+            <small class="contador"><span id="contador">0</span>/500 caracteres</small>
+          </div>
+
+          <div class="campo">
+            <div class="opcao">
+              <input type="checkbox" id="termo" name="termo" required>
+              <label for="termo">Concordo com o termo de adoção responsável</label>
+            </div>
+            <span class="erro" id="erro-termo"></span>
+          </div>
+
+          <button type="submit" class="botao">Enviar pré-cadastro</button>
+          <p class="sucesso" id="sucesso"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 PetMatch - ONG de adoção responsável. Projeto acadêmico.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
